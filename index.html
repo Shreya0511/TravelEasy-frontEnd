@@ -7,6 +7,7 @@
     <link type="text/css" rel="stylesheet" href="css/style.css" />
     <link type="text/css" rel="stylesheet" href="css/font-awesome.min.css" />
     <link types = "text/css" rel = "stylesheet" href = "css/Footer.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -162,6 +163,43 @@
     </div>
 
 </div>
+
+
+<!-- //slideshow -->
+<h2 class = "automaticslideshow">Travelling made Fun</h2>
+<p class = "changein2sec">We make it easier for everyone to travel</p>
+
+<div class="slideshow-container">
+
+<div class="mySlides fade">
+  <div class="numbertext">1 / 6</div>
+  <img src="https://media.istockphoto.com/id/1397843969/photo/rearview-shot-of-a-happy-family-walking-towards-the-sea.jpg?b=1&s=170667a&w=0&k=20&c=q_dlVsV0rJq86G-pX6ug37BExOfJgljHDobyhMH7XyQ=" style="width:100%">
+  <div class="text">Easy Booking</div>
+</div>
+
+<div class="mySlides fade">
+  <div class="numbertext">2 / 6</div>
+  <img src="https://images.unsplash.com/photo-1475503572774-15a45e5d60b9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MTF8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=600&q=60" style="width:100%">
+  <div class="text">Awesome Places</div>
+</div>
+
+<div class="mySlides fade">
+  <div class="numbertext">3 / 6</div>
+  <img src="https://media.istockphoto.com/id/1434054606/photo/traveler-backpacker-girl-is-watching-hot-air-balloons-and-the-fairy-chimneys-at-cappadocia.jpg?b=1&s=170667a&w=0&k=20&c=9eQP1EMSpMweCwGcc4uU6MV2y4CjnH2C82S7BYypIHk=" style="width:100%">
+  <div class="text">24 X 7 availability</div>
+</div>
+
+
+
+</div>
+<br>
+
+<div style="text-align:center">
+  <span class="dot"></span> 
+  <span class="dot"></span> 
+  <span class="dot"></span> 
+</div>
+
 
 
 
@@ -324,9 +362,89 @@
     <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
     <script type="text/javascript" src="js/owl.carousel.min.js"></script>
     <script type="text/javascript" src="js/extrenaljq.js"></script>
+    <script>let slideIndex = 0;
+        showSlides();
+        
+        function showSlides() {
+          let i;
+          let slides = document.getElementsByClassName("mySlides");
+          let dots = document.getElementsByClassName("dot");
+          for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";  
+          }
+          slideIndex++;
+          if (slideIndex > slides.length) {slideIndex = 1}    
+          for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+          }
+          slides[slideIndex-1].style.display = "block";  
+          dots[slideIndex-1].className += " active";
+          setTimeout(showSlides, 2000); // Change image every 2 seconds
+        }</script>
 
 
-    
+    <script>
+        // Hotels
+        const options = {
+	method: 'GET',
+	headers: {
+		'X-RapidAPI-Key': '94f1decc4dmshf5184ae07394d7ep127c52jsn4640e90a7abe',
+		'X-RapidAPI-Host': 'hotels-com-provider.p.rapidapi.com'
+	}
+};
+
+fetch('https://hotels-com-provider.p.rapidapi.com/v2/meta/convert/slug-id?slug=ho219115', options)
+	.then(response => response.json())
+	.then(response => console.log(response))
+	.catch(err => console.error(err));
+
+    //ircts
+    const options1 = {
+	method: 'GET',
+	headers: {
+		'X-RapidAPI-Key': '94f1decc4dmshf5184ae07394d7ep127c52jsn4640e90a7abe',
+		'X-RapidAPI-Host': 'irctc1.p.rapidapi.com'
+	}
+};
+
+const Trainsbetweenstations = fetch('https://irctc1.p.rapidapi.com/api/v2/trainBetweenStations?fromStationCode=bju&toStationCode=bdts', options)
+	.then(response => response.json())
+	.then(response => console.log(response))
+	.catch(err => console.error(err));
+
+
+    //get fair of trains
+    const options2 = {
+	method: 'GET',
+	headers: {
+		'X-RapidAPI-Key': '94f1decc4dmshf5184ae07394d7ep127c52jsn4640e90a7abe',
+		'X-RapidAPI-Host': 'irctc1.p.rapidapi.com'
+	}
+};
+
+fetch('https://irctc1.p.rapidapi.com/api/v2/getFare?trainNo=19038&fromStationCode=ST&toStationCode=BVI', options)
+	.then(response => response.json())
+	.then(response => console.log(response))
+	.catch(err => console.error(err));
+
+
+    //get bus details
+    const options3 = {
+	method: 'GET',
+	headers: {
+		'X-RapidAPI-Key': '94f1decc4dmshf5184ae07394d7ep127c52jsn4640e90a7abe',
+		'X-RapidAPI-Host': 'irctc1.p.rapidapi.com'
+	}
+};
+
+fetch('https://irctc1.p.rapidapi.com/api/v1/searchStation?query=BJU', options)
+	.then(response => response.json())
+	.then(response => console.log(response))
+	.catch(err => console.error(err));
+    </script>  
+
+
+
 
     
 </body>
